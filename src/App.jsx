@@ -20,7 +20,7 @@ export const App = () => {
   const [sortedGoods, setSortedGoods] = useState(goodsFromServer);
   const [isReversed, setIsReversed] = useState(false);
   const [sortType, setSortType] = useState(null);
-  const isModified = sortType !== null || isReversed;
+  const isModified = JSON.stringify(sortedGoods) !== JSON.stringify(goodsFromServer);
 
   const sortGoods = type => {
     const goods = [...goodsFromServer];
@@ -82,7 +82,11 @@ export const App = () => {
         </button>
 
         {isModified && (
-          <button type="button" className="button is-danger" onClick={reset}>
+          <button
+            type="button"
+            className="button is-danger"
+            onClick={reset}
+          >
             Reset
           </button>
         )}
